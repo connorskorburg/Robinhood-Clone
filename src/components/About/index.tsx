@@ -3,8 +3,9 @@ const About = (): JSX.Element => {
     <div className="about mb-75">
       <h2 className="mb-1 pb-1 bb-1">About</h2>
       <h3>
-        QQQ tracks a modified-market-cap-weighted index of 100 NASDAQ-listed
-        stocks. The listed name for QQQ is Invesco QQQ Trust, Series 1.
+        SPY tracks a market-cap weighted index of US large- and midcap stocks
+        selected by the S&P committee. The listed name for SPY is SPDR S&P 500
+        ETF Trust.
       </h3>
     </div>
   );

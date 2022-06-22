@@ -15,7 +15,7 @@ const Watchlist = () => {
 
   useEffect(() => {
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/market/quote?token=Tpk_2dedebc58c2b48a189cbbab50515b095&range=1m&includeToday=true&symbols=AAPL,DIS,TSLA,SPY,QQQ&format=json`
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/market/quote?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&symbols=AAPL,DIS,TSLA,SPY,QQQ&format=json`
     )
       .then((res) => res.json())
       .then((data) => {

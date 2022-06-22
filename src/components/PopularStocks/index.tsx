@@ -7,6 +7,7 @@ const PopularStocks = (): JSX.Element => {
 
   useEffect(() => {
     setLoading(true);
+    console.log("fetching....");
     fetchPopularStocks();
     setLoading(false);
     // eslint-disable-next-line
@@ -22,7 +23,7 @@ const PopularStocks = (): JSX.Element => {
         {popularStocks
           .splice(0, 4)
           .map(({ latestPrice, changePercent, companyName, change }: Stock) => (
-            <div className="card">
+            <div key={companyName} className="card">
               <h4 className="font-bold h-60">{companyName}</h4>
               <h2 className="text-green">${latestPrice}</h2>
               <p className="text-green mt-1">+{changePercent}%</p>

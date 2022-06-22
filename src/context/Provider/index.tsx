@@ -16,7 +16,7 @@ const Provider = ({ children }: { children: JSX.Element }) => {
 
   const fetchNews = () =>
     fetch(
-      "https://sandbox.iexapis.com/stable/stock/market/news?token=Tpk_2dedebc58c2b48a189cbbab50515b095&range=1m&includeToday=true&format=json"
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/market/news?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&format=json`
     )
       .then((response) => response.json())
       .then((data) =>
@@ -26,7 +26,7 @@ const Provider = ({ children }: { children: JSX.Element }) => {
 
   const fetchPopularStocks = () =>
     fetch(
-      "https://sandbox.iexapis.com/stable/stock/market/list/mostactive?token=Tpk_2dedebc58c2b48a189cbbab50515b095&range=1m&includeToday=true&format=json"
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/market/list/mostactive?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&format=json`
     )
       .then((response) => response.json())
       .then((data) =>

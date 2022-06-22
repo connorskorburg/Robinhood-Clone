@@ -5,9 +5,6 @@ import { useStockContext } from "../../context";
 
 const StockChart = (): JSX.Element => {
   const { symbol, companyName } = useStockContext();
-
-  console.log(symbol);
-
   const [tickerInfo, setTickerInfo] = useState({
     symbol,
     iexClose: 0,
@@ -25,37 +22,30 @@ const StockChart = (): JSX.Element => {
   const [seriesData, setSeriesData] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTickerInfo({ ...tickerInfo, companyName, symbol });
-      fetch(
-        `https://sandbox.iexapis.com/stable/stock/${tickerInfo.symbol}/chart?token=Tpk_2dedebc58c2b48a189cbbab50515b095&range=1m&includeToday=true&format=json`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          const tempSeriesData: any = [];
-          data.forEach(({ date, fHigh, fLow, fClose, fOpen }: SeriesData) => {
-            if (fHigh && fLow && fClose && fOpen) {
-              tempSeriesData.push({
-                x: new Date(date),
-                y: [fOpen, fHigh, fLow, fClose],
-              });
-            }
-          });
-          setSeriesData(tempSeriesData);
-          // setTickerInfo({
-          //   ...tickerInfo,
-          //   iexClose: tempSeriesData[tempSeriesData.length - 1]["y"][3],
-          // });
-        })
-        .catch((err) => console.error(err));
-    }, 3000);
-  }, [symbol, companyName]);
+    fetch(
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/${tickerInfo.symbol}/chart?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&format=json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const tempSeriesData: any = [];
+        data.forEach(({ date, fHigh, fLow, fClose, fOpen }: SeriesData) => {
+          if (fHigh && fLow && fClose && fOpen) {
+            tempSeriesData.push({
+              x: new Date(date),
+              y: [fOpen, fHigh, fLow, fClose],
+            });
+          }
+        });
+        setSeriesData(tempSeriesData);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <section>
       <header>
         <h1>{tickerInfo.companyName}</h1>
-        <h1>${tickerInfo.iexClose}</h1>
+        <h1>$375.66</h1>
         <h4 className="mt-1">+$0.79 (+0.22%)</h4>
       </header>
 
