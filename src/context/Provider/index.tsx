@@ -5,7 +5,8 @@ import Reducer from "../Reducer";
 const Provider = ({ children }: { children: JSX.Element }) => {
   const [state, dispatch] = useReducer(Reducer, initialValues);
 
-  const { symbol, companyName, articles, popularStocks } = state;
+  const { symbol, companyName, articles, popularStocks, companyDescription } =
+    state;
 
   const updateTicker = (symbol: string, companyName: string) => {
     dispatch({
@@ -34,16 +35,31 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       )
       .catch((error) => new Error(error));
 
+  const fetchCompanyInfo = () =>
+    fetch(
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/${symbol}/company?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({
+          type: "GET_COMPANY_INFO" as ActionType,
+          payload: data?.description,
+        });
+      })
+      .catch((error) => new Error(error));
+
   return (
     <StockContext.Provider
       value={{
         symbol,
         companyName,
+        companyDescription,
         updateTicker,
         articles,
         fetchNews,
         popularStocks,
         fetchPopularStocks,
+        fetchCompanyInfo,
       }}
     >
       {children}

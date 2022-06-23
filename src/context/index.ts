@@ -19,12 +19,14 @@ export interface Stock {
 
 export type StockState = {
     symbol: string;
+    companyDescription: string;
     companyName: string;
     updateTicker: (symbol: string, companyName: string) => void;
     articles: Array<Article>;
     fetchNews: () => void;
     popularStocks: Array<Stock>;
     fetchPopularStocks: () => void;
+    fetchCompanyInfo: () => void;
 }
 
 export enum ActionType {
@@ -32,6 +34,7 @@ export enum ActionType {
     UpateTicker = 'UPDATE_TICKER',
     GetNews = 'GET_NEWS',
     GetPopularStocks = 'GET_POPULAR_STOCKS',
+    GetCompanyInfo = 'GET_COMPANY_INFO',
 }
 
 export interface Action {
@@ -40,13 +43,15 @@ export interface Action {
 }
 
 export const initialValues = {
-    symbol: "SPY",
-    companyName: "S&P 500 ETF TRUST ETF",
+    symbol: "AAPL",
+    companyDescription: "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA.",
+    companyName: "Apple Inc.",
     updateTicker: (symbol: string, companyName: string) => {},
     articles: [],
     fetchNews: () => {},
     popularStocks: [],
     fetchPopularStocks: () => {},
+    fetchCompanyInfo: () => {},
 };
 
 export const StockContext = createContext<StockState>(initialValues);

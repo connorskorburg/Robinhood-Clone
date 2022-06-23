@@ -18,6 +18,11 @@ const Reducer = (state: StockState, action: Action) => {
                 ...state,
                 popularStocks: action.payload
             }
+        case 'GET_COMPANY_INFO':
+            return {
+                ...state,
+                companyDescription: action.payload
+            }
         default:
             return state;
     }

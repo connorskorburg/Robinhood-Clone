@@ -3,7 +3,9 @@ const StockChartOptions = (): JSX.Element => {
   return (
     <div className="bb-1 flex mb-75">
       {options.map((option) => (
-        <h4 className="pb-1 mr-2 bb-3-green font-bold">{option}</h4>
+        <h4 key={option} className="pb-1 mr-2 bb-3-green font-bold">
+          {option}
+        </h4>
       ))}
     </div>
   );

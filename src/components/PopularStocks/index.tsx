@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useStockContext, Stock } from "../../context";
 
 const PopularStocks = (): JSX.Element => {
-  const [loading, setLoading] = useState<boolean>(false);
   const { fetchPopularStocks, popularStocks } = useStockContext();
 
   useEffect(() => {
-    setLoading(true);
-    console.log("fetching....");
     fetchPopularStocks();
-    setLoading(false);
     // eslint-disable-next-line
   }, []);
 
