@@ -5,8 +5,15 @@ import Reducer from "../Reducer";
 const Provider = ({ children }: { children: JSX.Element }) => {
   const [state, dispatch] = useReducer(Reducer, initialValues);
 
-  const { symbol, companyName, articles, popularStocks, companyDescription } =
-    state;
+  const {
+    symbol,
+    companyName,
+    articles,
+    popularStocks,
+    companyDescription,
+    loading,
+    setLoading,
+  } = state;
 
   const updateTicker = (symbol: string, companyName: string) => {
     dispatch({
@@ -60,6 +67,8 @@ const Provider = ({ children }: { children: JSX.Element }) => {
         popularStocks,
         fetchPopularStocks,
         fetchCompanyInfo,
+        loading,
+        setLoading,
       }}
     >
       {children}

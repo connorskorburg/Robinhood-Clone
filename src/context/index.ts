@@ -27,6 +27,8 @@ export type StockState = {
     popularStocks: Array<Stock>;
     fetchPopularStocks: () => void;
     fetchCompanyInfo: () => void;
+    loading: boolean;
+    setLoading: (loading: boolean) => void;
 }
 
 export enum ActionType {
@@ -52,6 +54,8 @@ export const initialValues = {
     popularStocks: [],
     fetchPopularStocks: () => {},
     fetchCompanyInfo: () => {},
+    loading: false,
+    setLoading: (loading: boolean) => {},
 };
 
 export const StockContext = createContext<StockState>(initialValues);

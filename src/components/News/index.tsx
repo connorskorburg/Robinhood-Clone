@@ -25,7 +25,7 @@ const News = (): JSX.Element => {
   return (
     <div className="news">
       <h2 className="pb-1 bb-1">News</h2>
-      {loading
+      {loading || !articles.length
         ? loadingArray.map(() => (
             <a
               href="/"
