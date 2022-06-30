@@ -49,7 +49,7 @@ export const ChartOptions = (seriesData: Array<any>, isStockGreen: boolean) => {
       },
     },
     tooltip: {
-        custom: ({ series, seriesIndex, dataPointIndex, w }: { series: any, seriesIndex: any, dataPointIndex: any, w: any }) => {
+        custom: ({ dataPointIndex, w }: { dataPointIndex: number, w: any }) => {
       return `<p>${new Date(
         w.globals.categoryLabels[dataPointIndex]
       ).toLocaleString("en-us")}</p>`;
