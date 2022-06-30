@@ -30,7 +30,11 @@ const Search = (): JSX.Element => {
   };
 
   const handleResultsItemClick = (symbol: string, name: string) => {
+    clearValues();
     updateTicker(symbol, name);
+  };
+
+  const clearValues = () => {
     setQuery("");
     setSearchResults([]);
   };
@@ -45,7 +49,7 @@ const Search = (): JSX.Element => {
         id="search"
         type="text"
         placeholder="Search"
-        defaultValue={query}
+        value={query}
       />
       {!!searchResults.length && (
         <div className="search-results">
@@ -59,6 +63,9 @@ const Search = (): JSX.Element => {
               </section>
             )
           )}
+          <section className="text-red" onClick={() => clearValues()}>
+            Clear
+          </section>
         </div>
       )}
     </div>
