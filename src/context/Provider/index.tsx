@@ -11,8 +11,8 @@ const Provider = ({ children }: { children: JSX.Element }) => {
     articles,
     popularStocks,
     companyDescription,
-    loading,
-    setLoading,
+    watchlist,
+    watchlistData,
   } = state;
 
   const updateTicker = (symbol: string, companyName: string) => {
@@ -55,6 +55,19 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((error) => new Error(error));
 
+  const fetchWatchlist = (watchlist: Array<string>) =>
+    fetch(
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/market/quote?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&displayPercent=true&symbols=${watchlist}}&format=json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: "GET_WATCH_LIST" as ActionType,
+          payload: data,
+        });
+      })
+      .catch((err) => console.error(err));
+
   return (
     <StockContext.Provider
       value={{
@@ -67,8 +80,9 @@ const Provider = ({ children }: { children: JSX.Element }) => {
         popularStocks,
         fetchPopularStocks,
         fetchCompanyInfo,
-        loading,
-        setLoading,
+        fetchWatchlist,
+        watchlist,
+        watchlistData,
       }}
     >
       {children}

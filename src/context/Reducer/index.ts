@@ -23,6 +23,11 @@ const Reducer = (state: StockState, action: Action) => {
                 ...state,
                 companyDescription: action.payload
             }
+        case 'GET_WATCH_LIST':
+            return {
+                ...state,
+                watchlistData: action.payload
+            }
         default:
             return state;
     }

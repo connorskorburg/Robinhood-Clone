@@ -9,6 +9,14 @@ interface Article {
     summary: string;
 }
 
+interface WatchlistItem {
+    symbol: string;
+    companyName: string;
+    changePercent: number;
+    latestPrice: number;
+    previousClose: number;
+}
+
 export interface Stock {
     changePercent: number;
     latestPrice: number;
@@ -29,8 +37,9 @@ export type StockState = {
     popularStocks: Array<Stock>;
     fetchPopularStocks: () => void;
     fetchCompanyInfo: () => void;
-    loading: boolean;
-    setLoading: (loading: boolean) => void;
+    fetchWatchlist: (watchlist: Array<string>) => void;
+    watchlist: Array<string>;
+    watchlistData: Array<WatchlistItem>;
 }
 
 export enum ActionType {
@@ -39,6 +48,7 @@ export enum ActionType {
     GetNews = 'GET_NEWS',
     GetPopularStocks = 'GET_POPULAR_STOCKS',
     GetCompanyInfo = 'GET_COMPANY_INFO',
+    GetWatchlist = 'GET_WATCH_LIST',
 }
 
 export interface Action {
@@ -56,8 +66,15 @@ export const initialValues = {
     popularStocks: [],
     fetchPopularStocks: () => {},
     fetchCompanyInfo: () => {},
-    loading: false,
-    setLoading: (loading: boolean) => {},
+    fetchWatchlist: (watchlist: Array<string>) => {},
+    watchlist: ['AAPL'],
+    watchlistData: [{
+        symbol: 'AAPL',
+        companyName: 'Apple Inc.',
+        changePercent: 0,
+        latestPrice: 0,
+        previousClose: 0
+    }]
 };
 
 export const StockContext = createContext<StockState>(initialValues);
