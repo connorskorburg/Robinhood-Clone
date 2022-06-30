@@ -26,6 +26,10 @@ const Provider = ({ children }: { children: JSX.Element }) => {
     });
   };
 
+  const updateWatchlist = (watchlist: Array<string>) => {
+    dispatch({ type: "UPDATE_WATCHLIST" as ActionType, payload: watchlist });
+  };
+
   const fetchNews = () =>
     fetch(
       `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/market/news?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&format=json`
@@ -123,6 +127,7 @@ const Provider = ({ children }: { children: JSX.Element }) => {
         change,
         latestPrice,
         fetchStockPrice,
+        updateWatchlist,
       }}
     >
       {children}

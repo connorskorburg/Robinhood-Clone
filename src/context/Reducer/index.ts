@@ -8,6 +8,11 @@ const Reducer = (state: StockState, action: Action) => {
                 symbol: action.payload.symbol,
                 companyName: action.payload.companyName,
             }
+        case 'UPDATE_WATCHLIST':
+            return {
+                ...state,
+                watchlist: action.payload,
+            }
         case 'GET_NEWS':
             return {
                 ...state,

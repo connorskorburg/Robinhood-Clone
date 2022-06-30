@@ -49,12 +49,11 @@ export const ChartOptions = (seriesData: Array<any>, isStockGreen: boolean) => {
       },
     },
     tooltip: {
-        // custom: ({ series, seriesIndex, dataPointIndex, w }) => {
-
-      // return `<p>${new Date(
-        // w.globals.categoryLabels[dataPointIndex]
-      // ).toLocaleString("en-us")}</p>`;
-        // },
+        custom: ({ series, seriesIndex, dataPointIndex, w }: { series: any, seriesIndex: any, dataPointIndex: any, w: any }) => {
+      return `<p>${new Date(
+        w.globals.categoryLabels[dataPointIndex]
+      ).toLocaleString("en-us")}</p>`;
+        },
       x: {
         show: false,
       },

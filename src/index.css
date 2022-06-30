@@ -41,6 +41,31 @@ a {
   font-size: 15px;
 }
 
+button {
+  font-size: 13px;
+  background-color: #fff;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border: 1px solid rgb(227, 233, 237);
+}
+
+button:hover {
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.btn-green:hover {
+  border: 1px solid #00c805;
+  color: #00c805;
+}
+
+.btn-red:hover {
+  border: 1px solid #ff5000;
+  color: #ff5000;
+}
+
 .container {
   width: 1024px;
   display: flex;
@@ -127,6 +152,12 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.flex-between-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .flex-center {
@@ -308,7 +339,7 @@ label {
 
 .card-lg {
   width: 350px;
-  margin: 100px 25px 25px 25px;
+  margin: 85px 25px 25px 25px;
   box-shadow: 0px -12px 24px rgba(0, 0, 0, 0.06),
   0px 12px 24px rgba(0, 0, 0, 0.06);
   border: 1px solid rgb(227, 233, 237);

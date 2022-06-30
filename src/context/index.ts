@@ -56,6 +56,7 @@ export type StockState = {
     fetchSeriesData: (symbol: string, range: DashboardTypes.OptionType) => void;
     seriesData: Array<Series>;
     fetchStockPrice: (symbol: string) => void;
+    updateWatchlist: (watchlist: Array<string>) => void;
 }
 
 export enum ActionType {
@@ -67,6 +68,7 @@ export enum ActionType {
     GetWatchlist = 'GET_WATCH_LIST',
     GetSeriesData = 'GET_SERIES_DATA',
     GetStockPrice = 'GET_STOCK_PRICE',
+    UpdateWatchlist = 'UPDATE_WATCHLIST'
 }
 
 export interface Action {
@@ -98,7 +100,8 @@ export const initialValues = {
     }],
     fetchSeriesData: (symbol: string, range: DashboardTypes.OptionType) => {},
     seriesData: [],
-    fetchStockPrice: (symbol: string) => {}
+    fetchStockPrice: (symbol: string) => {},
+    updateWatchlist: (watchlist: Array<string>) => {}
 };
 
 export const StockContext = createContext<StockState>(initialValues);

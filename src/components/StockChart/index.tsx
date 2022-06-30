@@ -14,9 +14,11 @@ const StockChart = (): JSX.Element => {
     change,
     changePercent,
     latestPrice,
+    watchlist,
+    updateWatchlist,
   } = useStockContext();
   const [loading, setLoading] = useState<boolean>(false);
-  const [option, setOption] = useState<DashboardTypes.OptionType>("5dm");
+  const [option, setOption] = useState<DashboardTypes.OptionType>("1y");
   let isStockGreen = true;
 
   useEffect(() => {
@@ -44,19 +46,43 @@ const StockChart = (): JSX.Element => {
     isStockGreen = latestPrice > seriesData[0]["open"];
   }
 
+  const isInWatchlist = watchlist.includes(symbol);
+
   return (
     <section>
-      <header>
-        <h1>{companyName}</h1>
-        <h1>${latestPrice.toFixed(2)}</h1>
-        {isStockGreen ? (
-          <h4 className="mt-1">
-            +{change} (+{changePercent.toFixed(2)}%)
-          </h4>
+      <header className="flex-between-start">
+        <div>
+          <h1>{companyName}</h1>
+          <h1>${latestPrice.toFixed(2)}</h1>
+          {isStockGreen ? (
+            <h4 className="mt-1">
+              +{change} (+{changePercent.toFixed(2)}%)
+            </h4>
+          ) : (
+            <h4 className="mt-1">
+              {change.toFixed(2)} ({changePercent.toFixed(2)}%)
+            </h4>
+          )}
+        </div>
+        {isInWatchlist ? (
+          <button
+            onClick={() => {
+              const newWatchlist = watchlist.filter((item) => item !== symbol);
+              updateWatchlist(newWatchlist);
+            }}
+            className="btn-red"
+          >
+            Remove from watchlist
+          </button>
         ) : (
-          <h4 className="mt-1">
-            {change.toFixed(2)} ({changePercent.toFixed(2)}%)
-          </h4>
+          <button
+            onClick={() => {
+              updateWatchlist([...watchlist, symbol]);
+            }}
+            className="btn-green"
+          >
+            Add to watchlist
+          </button>
         )}
       </header>
       {loading || !formattedSeriesData.length ? (
