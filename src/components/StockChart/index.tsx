@@ -17,6 +17,7 @@ const StockChart = (): JSX.Element => {
   } = useStockContext();
   const [loading, setLoading] = useState<boolean>(false);
   const [option, setOption] = useState<DashboardTypes.OptionType>("5dm");
+  let isStockGreen = true;
 
   useEffect(() => {
     setLoading(true);
@@ -39,7 +40,9 @@ const StockChart = (): JSX.Element => {
     }
   );
 
-  const isStockGreen = !changePercent?.toString()?.includes("-");
+  if (seriesData.length) {
+    isStockGreen = latestPrice > seriesData[0]["open"];
+  }
 
   return (
     <section>
