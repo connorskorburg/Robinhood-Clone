@@ -222,6 +222,22 @@ a {
   color: transparent;
 }
 
+.loading h2 {
+  width: 200px;
+  background-color: rgb(227, 233, 237);
+  border-radius: 5px;
+  color: transparent;
+}
+
+.loading h3 {
+  width: 100%;
+  background-color: rgb(227, 233, 237);
+  border-radius: 5px;
+  color: transparent;
+  height: 400px;
+
+}
+
 .bb-3-green {
   border-bottom: 3px solid transparent;
 }

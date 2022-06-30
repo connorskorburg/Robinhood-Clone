@@ -5,15 +5,6 @@ const News = (): JSX.Element => {
   const { fetchNews, articles } = useStockContext();
   const [loading, setLoading] = useState<boolean>(false);
 
-  interface ArticleItem {
-    headline: string;
-    source: string;
-    datetime: string | Date;
-    image: string;
-    url: string;
-    summary: string;
-  }
-
   useEffect(() => {
     setLoading(true);
     fetchNews();
@@ -35,36 +26,35 @@ const News = (): JSX.Element => {
               <div className="body-text">
                 <h4>Loading</h4>
                 <p className="py-2"></p>
-                <div className="flex">
-                  <h4>Loading</h4>
-                  <p className="ml-1"></p>
-                </div>
               </div>
               <article />
             </a>
           ))
-        : articles?.map(({ headline, source, url, summary }: ArticleItem) => (
-            <a
-              key={headline}
-              href={url}
-              className="hover-bg-light bb-1 flex-between py-2"
-            >
-              <div className="body-text">
-                <h4 className="font-bold">{source}</h4>
-                <p className="py-2">{summary}</p>
-                <div className="flex">
-                  <h4 className="font-bold">DIS</h4>
-                  <p className="text-green ml-1">+1.12%</p>
+        : articles?.map(
+            ({
+              headline,
+              source,
+              url,
+              summary,
+            }: DashboardTypes.ArticleItem) => (
+              <a
+                key={headline}
+                href={url}
+                className="hover-bg-light bb-1 flex-between py-2"
+              >
+                <div className="body-text">
+                  <h4 className="font-bold">{source}</h4>
+                  <p className="py-2">{summary}</p>
                 </div>
-              </div>
-              <img
-                width="130px"
-                height="74px"
-                src="https://via.placeholder.com/150/92c952"
-                alt={headline}
-              />
-            </a>
-          ))}
+                <img
+                  width="130px"
+                  height="74px"
+                  src="https://via.placeholder.com/150/92c952"
+                  alt={headline}
+                />
+              </a>
+            )
+          )}
     </div>
   );
 };
