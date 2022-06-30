@@ -1,6 +1,5 @@
-import { StockState, Action } from "..";
 
-const Reducer = (state: StockState, action: Action) => {
+const Reducer = (state: DashboardTypes.StockState, action: DashboardTypes.Action) => {
     switch(action.type) {
         case 'UPDATE_TICKER':
             return {

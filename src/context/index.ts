@@ -1,81 +1,5 @@
 import { createContext, useContext } from "react";
 
-interface Article {
-    headline: string;
-    source: string;
-    datetime: string | Date;
-    image: string;
-    url: string;
-    summary: string;
-}
-
-interface WatchlistItem {
-    symbol: string;
-    companyName: string;
-    changePercent: number;
-    latestPrice: number;
-    previousClose: number;
-}
-
-interface Series {
-    change: number;
-    changePercent: number;
-    close: number;
-    date: string;
-    high: number;
-    low: number;
-    open: number;
-}
-
-export interface Stock {
-    changePercent: number;
-    latestPrice: number;
-    symbol: string;
-    companyName: string;
-    change: number;
-    close: number;
-    open: number;
-}
-
-export type StockState = {
-    symbol: string;
-    companyDescription: string;
-    changePercent: number;
-    change: number;
-    latestPrice: number;
-    companyName: string;
-    updateTicker: (symbol: string, companyName: string) => void;
-    articles: Array<Article>;
-    fetchNews: () => void;
-    popularStocks: Array<Stock>;
-    fetchPopularStocks: () => void;
-    fetchCompanyInfo: () => void;
-    fetchWatchlist: (watchlist: Array<string>) => void;
-    watchlist: Array<string>;
-    watchlistData: Array<WatchlistItem>;
-    fetchSeriesData: (symbol: string, range: DashboardTypes.OptionType) => void;
-    seriesData: Array<Series>;
-    fetchStockPrice: (symbol: string) => void;
-    updateWatchlist: (watchlist: Array<string>) => void;
-}
-
-export enum ActionType {
-    GetTicker = 'GET_TICKER',
-    UpateTicker = 'UPDATE_TICKER',
-    GetNews = 'GET_NEWS',
-    GetPopularStocks = 'GET_POPULAR_STOCKS',
-    GetCompanyInfo = 'GET_COMPANY_INFO',
-    GetWatchlist = 'GET_WATCH_LIST',
-    GetSeriesData = 'GET_SERIES_DATA',
-    GetStockPrice = 'GET_STOCK_PRICE',
-    UpdateWatchlist = 'UPDATE_WATCHLIST'
-}
-
-export interface Action {
-    type: ActionType;
-    payload: any;
-}
-
 export const initialValues = {
     symbol: "AAPL",
     changePercent: 0,
@@ -104,6 +28,6 @@ export const initialValues = {
     updateWatchlist: (watchlist: Array<string>) => {}
 };
 
-export const StockContext = createContext<StockState>(initialValues);
+export const StockContext = createContext<DashboardTypes.StockState>(initialValues);
 
 export const useStockContext = () => useContext(StockContext);

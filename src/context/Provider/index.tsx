@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { StockContext, initialValues, ActionType } from "..";
+import { StockContext, initialValues } from "..";
 import Reducer from "../Reducer";
 
 const Provider = ({ children }: { children: JSX.Element }) => {
@@ -21,13 +21,16 @@ const Provider = ({ children }: { children: JSX.Element }) => {
 
   const updateTicker = (symbol: string, companyName: string) => {
     dispatch({
-      type: "UPDATE_TICKER" as ActionType,
+      type: "UPDATE_TICKER" as DashboardTypes.ActionType,
       payload: { symbol, companyName },
     });
   };
 
   const updateWatchlist = (watchlist: Array<string>) => {
-    dispatch({ type: "UPDATE_WATCHLIST" as ActionType, payload: watchlist });
+    dispatch({
+      type: "UPDATE_WATCHLIST" as DashboardTypes.ActionType,
+      payload: watchlist,
+    });
   };
 
   const fetchNews = () =>
@@ -36,7 +39,10 @@ const Provider = ({ children }: { children: JSX.Element }) => {
     )
       .then((response) => response.json())
       .then((data) =>
-        dispatch({ type: "GET_NEWS" as ActionType, payload: data })
+        dispatch({
+          type: "GET_NEWS" as DashboardTypes.ActionType,
+          payload: data,
+        })
       )
       .catch((error) => new Error(error));
 
@@ -46,7 +52,10 @@ const Provider = ({ children }: { children: JSX.Element }) => {
     )
       .then((response) => response.json())
       .then((data) =>
-        dispatch({ type: "GET_POPULAR_STOCKS" as ActionType, payload: data })
+        dispatch({
+          type: "GET_POPULAR_STOCKS" as DashboardTypes.ActionType,
+          payload: data,
+        })
       )
       .catch((error) => new Error(error));
 
@@ -57,7 +66,7 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       .then((response) => response.json())
       .then((data) => {
         dispatch({
-          type: "GET_COMPANY_INFO" as ActionType,
+          type: "GET_COMPANY_INFO" as DashboardTypes.ActionType,
           payload: data?.description,
         });
       })
@@ -70,7 +79,7 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       .then((res) => res.json())
       .then((data) => {
         dispatch({
-          type: "GET_WATCH_LIST" as ActionType,
+          type: "GET_WATCH_LIST" as DashboardTypes.ActionType,
           payload: data,
         });
       })
@@ -87,7 +96,7 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       .then((res) => res.json())
       .then((data) => {
         dispatch({
-          type: "GET_SERIES_DATA" as ActionType,
+          type: "GET_SERIES_DATA" as DashboardTypes.ActionType,
           payload: data,
         });
       })
@@ -100,7 +109,7 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       .then((res) => res.json())
       .then((data) => {
         dispatch({
-          type: "GET_STOCK_PRICE" as ActionType,
+          type: "GET_STOCK_PRICE" as DashboardTypes.ActionType,
           payload: data,
         });
       })

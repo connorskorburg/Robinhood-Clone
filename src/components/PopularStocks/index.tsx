@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useStockContext, Stock } from "../../context";
+import { useStockContext } from "../../context";
 
 const PopularStocks = (): JSX.Element => {
   const { fetchPopularStocks, popularStocks } = useStockContext();
@@ -30,7 +30,13 @@ const PopularStocks = (): JSX.Element => {
         <div className="flex-between mb-75">
           {popularStocks.map(
             (
-              { latestPrice, changePercent, companyName, open, close }: Stock,
+              {
+                latestPrice,
+                changePercent,
+                companyName,
+                open,
+                close,
+              }: DashboardTypes.Stock,
               idx
             ) => {
               const isStockGreen = close > open;
