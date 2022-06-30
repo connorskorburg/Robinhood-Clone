@@ -238,14 +238,27 @@ a {
   border-radius: 5px;
   color: transparent;
   height: 400px;
-
 }
 
-.bb-3-green {
+.chart-loading {
+  width: 100%;
+  height: 250px;
+  background-color: rgb(227, 233, 237);
+  border-radius: 5px;
+  margin: 25px 0;
+}
+
+.bb-3 {
   border-bottom: 3px solid transparent;
 }
 
-.bb-3-green:hover {
+.bb-3-green {
+  border-bottom: 3px solid #00c805;
+  /* border-bottom: 3px solid transparent; */
+}
+
+.bb-3-green:hover,
+.bb-3:hover {
   cursor: pointer;
   transition: all 300ms ease-in-out;
   border-bottom: 3px solid #00c805;

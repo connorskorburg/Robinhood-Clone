@@ -13,6 +13,10 @@ const Provider = ({ children }: { children: JSX.Element }) => {
     companyDescription,
     watchlist,
     watchlistData,
+    seriesData,
+    changePercent,
+    change,
+    latestPrice,
   } = state;
 
   const updateTicker = (symbol: string, companyName: string) => {
@@ -68,6 +72,33 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => console.error(err));
 
+  const fetchSeriesData = (symbol: string) =>
+    fetch(
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/${symbol}/chart?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&format=json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: "GET_SERIES_DATA" as ActionType,
+          payload: data,
+        });
+      })
+      .catch((err) => console.error(err));
+
+  const fetchStockPrice = (symbol: string) =>
+    fetch(
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/${symbol}/quote?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&displayPercent=true&format=json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        dispatch({
+          type: "GET_STOCK_PRICE" as ActionType,
+          payload: data,
+        });
+      })
+      .catch((err) => console.error(err));
+
   return (
     <StockContext.Provider
       value={{
@@ -83,6 +114,12 @@ const Provider = ({ children }: { children: JSX.Element }) => {
         fetchWatchlist,
         watchlist,
         watchlistData,
+        fetchSeriesData,
+        seriesData,
+        changePercent,
+        change,
+        latestPrice,
+        fetchStockPrice,
       }}
     >
       {children}

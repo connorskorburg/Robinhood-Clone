@@ -17,6 +17,16 @@ interface WatchlistItem {
     previousClose: number;
 }
 
+interface Series {
+    change: number;
+    changePercent: number;
+    close: number;
+    date: string;
+    high: number;
+    low: number;
+    open: number;
+}
+
 export interface Stock {
     changePercent: number;
     latestPrice: number;
@@ -30,6 +40,9 @@ export interface Stock {
 export type StockState = {
     symbol: string;
     companyDescription: string;
+    changePercent: number;
+    change: number;
+    latestPrice: number;
     companyName: string;
     updateTicker: (symbol: string, companyName: string) => void;
     articles: Array<Article>;
@@ -40,6 +53,9 @@ export type StockState = {
     fetchWatchlist: (watchlist: Array<string>) => void;
     watchlist: Array<string>;
     watchlistData: Array<WatchlistItem>;
+    fetchSeriesData: (symbol: string) => void;
+    seriesData: Array<Series>;
+    fetchStockPrice: (symbol: string) => void;
 }
 
 export enum ActionType {
@@ -49,6 +65,8 @@ export enum ActionType {
     GetPopularStocks = 'GET_POPULAR_STOCKS',
     GetCompanyInfo = 'GET_COMPANY_INFO',
     GetWatchlist = 'GET_WATCH_LIST',
+    GetSeriesData = 'GET_SERIES_DATA',
+    GetStockPrice = 'GET_STOCK_PRICE',
 }
 
 export interface Action {
@@ -58,6 +76,9 @@ export interface Action {
 
 export const initialValues = {
     symbol: "AAPL",
+    changePercent: 0,
+    latestPrice: 0,
+    change: 0,
     companyDescription: "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA.",
     companyName: "Apple Inc.",
     updateTicker: (symbol: string, companyName: string) => {},
@@ -74,7 +95,10 @@ export const initialValues = {
         changePercent: 0,
         latestPrice: 0,
         previousClose: 0
-    }]
+    }],
+    fetchSeriesData: (symbol: string) => {},
+    seriesData: [],
+    fetchStockPrice: (symbol: string) => {}
 };
 
 export const StockContext = createContext<StockState>(initialValues);

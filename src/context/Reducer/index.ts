@@ -28,6 +28,19 @@ const Reducer = (state: StockState, action: Action) => {
                 ...state,
                 watchlistData: action.payload
             }
+        case 'GET_SERIES_DATA': 
+            return {
+                ...state,
+                seriesData: action.payload
+            }
+        case 'GET_STOCK_PRICE': {
+            return {
+                ...state,
+                changePercent: action.payload.changePercent,
+                change: action.payload.change,
+                latestPrice: action.payload.latestPrice,
+            }
+        }
         default:
             return state;
     }
