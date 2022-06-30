@@ -13,7 +13,11 @@ const About = (): JSX.Element => {
   }, [symbol]);
 
   return (
-    <div className={`${loading ? "loading" : ""} about mb-75`}>
+    <div
+      className={`${
+        loading || !companyDescription ? "loading" : ""
+      } about mb-75`}
+    >
       <h2 className="mb-1 pb-1 bb-1">About</h2>
       <h3>{companyDescription}</h3>
     </div>

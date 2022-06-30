@@ -15,6 +15,8 @@ export interface Stock {
     symbol: string;
     companyName: string;
     change: number;
+    close: number;
+    open: number;
 }
 
 export type StockState = {

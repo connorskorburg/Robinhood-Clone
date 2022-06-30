@@ -31,13 +31,30 @@ const PopularStocks = (): JSX.Element => {
           {popularStocks
             .splice(0, 4)
             .map(
-              ({ latestPrice, changePercent, companyName, change }: Stock) => (
-                <div key={companyName} className="card">
-                  <h4 className="font-bold h-60">{companyName}</h4>
-                  <h2 className="text-green">${latestPrice.toFixed(2)}</h2>
-                  <p className="text-green mt-1">+{changePercent}%</p>
-                </div>
-              )
+              ({
+                latestPrice,
+                changePercent,
+                companyName,
+                open,
+                close,
+              }: Stock) => {
+                const isStockGreen = close > open;
+                return (
+                  <div key={companyName} className="card">
+                    <h4 className="font-bold h-60">{companyName}</h4>
+                    <h2 className={`text-${isStockGreen ? "green" : "red"}`}>
+                      ${latestPrice.toFixed(2)}
+                    </h2>
+                    <p
+                      className={`text-${isStockGreen ? "green" : "red"} mt-1`}
+                    >
+                      {isStockGreen
+                        ? `+${changePercent}%`
+                        : `-${changePercent}%`}
+                    </p>
+                  </div>
+                );
+              }
             )}
         </div>
       )}
