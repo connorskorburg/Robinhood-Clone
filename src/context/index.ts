@@ -90,7 +90,7 @@ export const initialValues = {
     fetchPopularStocks: () => {},
     fetchCompanyInfo: () => {},
     fetchWatchlist: (watchlist: Array<string>) => {},
-    watchlist: ['AAPL'],
+    watchlist: ['AAPL', 'TSLA', 'MSFT', 'AMZN', 'DIS', 'NVDA', 'AMD'],
     watchlistData: [{
         symbol: 'AAPL',
         companyName: 'Apple Inc.',
