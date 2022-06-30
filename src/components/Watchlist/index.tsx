@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useStockContext } from "../../context";
 
 interface TickerItem {
-  iexClose: number | null;
+  iexClose: number;
   symbol: string;
   companyName: string;
-  changePercent: number | null;
+  changePercent: number;
 }
 
 const Watchlist = () => {
@@ -13,9 +13,11 @@ const Watchlist = () => {
 
   const [list, setList] = useState<Array<TickerItem>>([]);
 
+  const defaultTickers = "AAPL,TSLA,AMZN,NVDA,AMD,GM,SPY,QQQ";
+
   useEffect(() => {
     fetch(
-      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/market/quote?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&symbols=AAPL,DIS,TSLA,SPY,QQQ&format=json`
+      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/market/quote?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&symbols=${defaultTickers}&format=json`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -48,7 +50,7 @@ const Watchlist = () => {
         >
           <div className="flex-between p-5">
             <h4 className="font-bold">{symbol}</h4>
-            <p>${iexClose}</p>
+            <p>${iexClose?.toFixed(2)}</p>
           </div>
           <div className="flex-between">
             <p>{companyName}</p>

@@ -26,8 +26,9 @@ const News = (): JSX.Element => {
     <div className="news">
       <h2 className="pb-1 bb-1">News</h2>
       {loading || !articles.length
-        ? loadingArray.map(() => (
+        ? loadingArray.map((item, idx) => (
             <a
+              key={idx}
               href="/"
               className="hover-bg-light bb-1 flex-between py-2 loading"
             >

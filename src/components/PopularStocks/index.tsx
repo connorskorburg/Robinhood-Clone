@@ -22,8 +22,8 @@ const PopularStocks = (): JSX.Element => {
       </h4>
       {loading || !popularStocks.length ? (
         <div className="flex-between mb-75">
-          {loadingArray.map(() => (
-            <div className="loading-card" />
+          {loadingArray.map((item, idx) => (
+            <div key={idx} className="loading-card" />
           ))}
         </div>
       ) : (
@@ -34,7 +34,7 @@ const PopularStocks = (): JSX.Element => {
               ({ latestPrice, changePercent, companyName, change }: Stock) => (
                 <div key={companyName} className="card">
                   <h4 className="font-bold h-60">{companyName}</h4>
-                  <h2 className="text-green">${latestPrice}</h2>
+                  <h2 className="text-green">${latestPrice.toFixed(2)}</h2>
                   <p className="text-green mt-1">+{changePercent}%</p>
                 </div>
               )
