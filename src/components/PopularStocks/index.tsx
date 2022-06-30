@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useStockContext } from "../../context";
 
 const PopularStocks = (): JSX.Element => {
-  const { fetchPopularStocks, popularStocks } = useStockContext();
+  const { fetchPopularStocks, popularStocks, updateTicker } = useStockContext();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,13 +36,18 @@ const PopularStocks = (): JSX.Element => {
                 companyName,
                 open,
                 close,
+                symbol,
               }: DashboardTypes.Stock,
               idx
             ) => {
               const isStockGreen = close > open;
               return (
                 idx < 4 && (
-                  <div key={idx} className="card">
+                  <div
+                    key={idx}
+                    className="card"
+                    onClick={() => updateTicker(symbol, companyName)}
+                  >
                     <h4 className="font-bold h-60">{companyName}</h4>
                     <h2 className={`text-${isStockGreen ? "green" : "red"}`}>
                       ${latestPrice.toFixed(2)}

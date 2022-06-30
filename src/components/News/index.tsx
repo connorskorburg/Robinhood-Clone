@@ -31,14 +31,18 @@ const News = (): JSX.Element => {
             </a>
           ))
         : articles?.map(
-            ({
-              headline,
-              source,
-              url,
-              summary,
-            }: DashboardTypes.ArticleItem) => (
+            (
+              {
+                headline,
+                source,
+                url,
+                summary,
+                image,
+              }: DashboardTypes.ArticleItem,
+              idx
+            ) => (
               <a
-                key={headline}
+                key={idx}
                 href={url}
                 className="hover-bg-light bb-1 flex-between py-2"
               >
@@ -46,12 +50,7 @@ const News = (): JSX.Element => {
                   <h4 className="font-bold">{source}</h4>
                   <p className="py-2">{summary}</p>
                 </div>
-                <img
-                  width="130px"
-                  height="74px"
-                  src="https://via.placeholder.com/150/92c952"
-                  alt={headline}
-                />
+                <img width="130px" height="74px" src={image} alt={headline} />
               </a>
             )
           )}
