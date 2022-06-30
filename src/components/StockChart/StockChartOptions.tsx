@@ -1,22 +1,39 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-const StockChartOptions = (): JSX.Element => {
-  type OptionType = "1D" | "1W" | "1M" | "3M" | "1Y" | "ALL";
+interface StockChartOptionsProps {
+  option: DashboardTypes.OptionType;
+  setOption: Dispatch<SetStateAction<DashboardTypes.OptionType>>;
+  isStockGreen: boolean;
+}
 
-  const [option, setOption] = useState<OptionType>("1D");
-  const options = ["1D", "1W", "1M", "3M", "1Y", "ALL"];
+const StockChartOptions = ({
+  option,
+  setOption,
+  isStockGreen,
+}: StockChartOptionsProps): JSX.Element => {
+  const options = [
+    { label: "1W", value: "5dm" },
+    { label: "1M", value: "1m" },
+    { label: "3M", value: "3m" },
+    { label: "6M", value: "6m" },
+    { label: "YTD", value: "YTD" },
+    { label: "1Y", value: "1y" },
+    { label: "ALL", value: "max" },
+  ];
 
   return (
     <div className="bb-1 flex mb-75">
-      {options.map((item) => (
+      {options.map(({ label, value }) => (
         <h4
-          onClick={() => setOption(item as OptionType)}
-          key={item}
+          onClick={() => setOption(value as DashboardTypes.OptionType)}
+          key={value}
           className={`pb-1 mr-2 bb-3 font-bold ${
-            item === option ? "text-green bb-3-green" : ""
+            value === option
+              ? `bb-3-${isStockGreen ? "green text-green" : "red text-red"}`
+              : ""
           }`}
         >
-          {item}
+          {label}
         </h4>
       ))}
     </div>

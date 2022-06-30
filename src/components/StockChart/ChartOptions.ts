@@ -1,4 +1,5 @@
-export const ChartOptions = () => {
+export const ChartOptions = (seriesData: Array<any>, isStockGreen: boolean) => {
+  const openPrice = seriesData[0].open;
   return {
     chart: {
       toolbar: {
@@ -48,48 +49,34 @@ export const ChartOptions = () => {
       },
     },
     tooltip: {
-      //   custom: ({ series, seriesIndex, dataPointIndex, w }) => {
-      // setTickerInfo({
-      //   ...tickerInfo,
-      //   iexClose: series[seriesIndex][dataPointIndex],
-      // });
+        // custom: ({ series, seriesIndex, dataPointIndex, w }) => {
 
       // return `<p>${new Date(
-      //   w.globals.categoryLabels[dataPointIndex]
+        // w.globals.categoryLabels[dataPointIndex]
       // ).toLocaleString("en-us")}</p>`;
-      //   },
+        // },
       x: {
         show: false,
       },
     },
     markers: {
-      colors: ["#00C805"],
+      colors: [`#${isStockGreen ? "00C805" : "FF5000"}`],
     },
     stroke: {
       show: true,
-      colors: ["#00C805"],
+      colors: [`#${isStockGreen ? "00C805" : "FF5000"}`],
       width: 2,
     },
     annotations: {
       yaxis: [
         {
-          // y: seriesData[0]["y"][0],
+          y: openPrice,
           strokeDashArray: 2,
           opacity: 0.8,
           offsetX: 0,
           offsetY: 0,
         },
       ],
-    },
-    noData: {
-      text: "No data found",
-      offsetX: 0,
-      offsetY: 0,
-      style: {
-        color: "#000000",
-        fontSize: "14px",
-        fontFamily: "Helvetica",
-      },
     },
   };
 };

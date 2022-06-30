@@ -16,13 +16,14 @@ const StockChart = (): JSX.Element => {
     latestPrice,
   } = useStockContext();
   const [loading, setLoading] = useState<boolean>(false);
+  const [option, setOption] = useState<DashboardTypes.OptionType>("5dm");
 
   useEffect(() => {
     setLoading(true);
-    fetchSeriesData(symbol);
+    fetchSeriesData(symbol, option);
     setLoading(false);
     // eslint-disable-next-line
-  }, [symbol]);
+  }, [symbol, option]);
 
   useEffect(() => {
     fetchStockPrice(symbol);
@@ -59,14 +60,18 @@ const StockChart = (): JSX.Element => {
         <div className="chart-loading" />
       ) : (
         <Chart
-          options={ChartOptions()}
+          options={ChartOptions(seriesData, isStockGreen)}
           series={[{ data: formattedSeriesData }]}
           type="line"
           width={"100%"}
           height={300}
         />
       )}
-      <StockChartOptions />
+      <StockChartOptions
+        option={option}
+        setOption={setOption}
+        isStockGreen={isStockGreen}
+      />
     </section>
   );
 };

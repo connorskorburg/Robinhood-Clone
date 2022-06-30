@@ -53,7 +53,7 @@ export type StockState = {
     fetchWatchlist: (watchlist: Array<string>) => void;
     watchlist: Array<string>;
     watchlistData: Array<WatchlistItem>;
-    fetchSeriesData: (symbol: string) => void;
+    fetchSeriesData: (symbol: string, range: DashboardTypes.OptionType) => void;
     seriesData: Array<Series>;
     fetchStockPrice: (symbol: string) => void;
 }
@@ -96,7 +96,7 @@ export const initialValues = {
         latestPrice: 0,
         previousClose: 0
     }],
-    fetchSeriesData: (symbol: string) => {},
+    fetchSeriesData: (symbol: string, range: DashboardTypes.OptionType) => {},
     seriesData: [],
     fetchStockPrice: (symbol: string) => {}
 };

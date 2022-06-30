@@ -72,9 +72,13 @@ const Provider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => console.error(err));
 
-  const fetchSeriesData = (symbol: string) =>
+  const fetchSeriesData = (symbol: string, range: DashboardTypes.OptionType) =>
     fetch(
-      `${process.env.REACT_APP_IEX_CLOUD_API_BASE_URL}stock/${symbol}/chart?token=${process.env.REACT_APP_IEX_CLOUD_API_KEY}&range=1m&includeToday=true&format=json`
+      `${
+        process.env.REACT_APP_IEX_CLOUD_API_BASE_URL
+      }stock/${symbol}/chart?token=${
+        process.env.REACT_APP_IEX_CLOUD_API_KEY
+      }&range=${range.toLowerCase()}&includeToday=true&format=json`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -91,7 +95,6 @@ const Provider = ({ children }: { children: JSX.Element }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         dispatch({
           type: "GET_STOCK_PRICE" as ActionType,
           payload: data,

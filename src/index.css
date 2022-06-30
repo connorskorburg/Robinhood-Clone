@@ -254,15 +254,25 @@ a {
 
 .bb-3-green {
   border-bottom: 3px solid #00c805;
-  /* border-bottom: 3px solid transparent; */
+}
+
+.bb-3-red {
+  border-bottom: 3px solid #ff5000;
+}
+
+.bb-3-red:hover {
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  border-bottom: 3px solid #ff5000;
+  color: #ff5000;
 }
 
 .bb-3-green:hover,
 .bb-3:hover {
   cursor: pointer;
   transition: all 300ms ease-in-out;
-  border-bottom: 3px solid #00c805;
-  color: #00c805;
+  border-bottom: 3px solid #000;
+  color: #000;
 }
 
 .search {
