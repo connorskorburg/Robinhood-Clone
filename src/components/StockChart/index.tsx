@@ -49,7 +49,7 @@ const StockChart = (): JSX.Element => {
   const isInWatchlist = watchlist.includes(symbol);
 
   return (
-    <section>
+    <section className="mt-50">
       <header className="flex-between-start">
         <div>
           <h1>{companyName}</h1>

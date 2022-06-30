@@ -138,6 +138,9 @@ button:hover {
 .mb-75 {
   margin-bottom: 75px;
 }
+.mt-50 {
+  margin-top: 50px;
+}
 
 .bb-1 {
   border-bottom: 1px solid rgb(227, 233, 237);
@@ -316,7 +319,6 @@ button:hover {
   align-items: center;
   border-radius: 6px;
   border: 1px solid rgb(227, 233, 237);
-  margin-bottom: 50px;
   width: 100%;
   max-width: 400px;
   padding-left: 35px;
@@ -343,7 +345,28 @@ label {
   width: 20px;
   top: 10px;
   left: 10px;
-  /* margin-left: 10px; */
+}
+
+.search-results {
+  width: 100%;
+  max-width: 400px;
+  font-size: 13px;
+  margin-bottom: 50px;
+  box-shadow: 0px -12px 24px rgba(0, 0, 0, 0.06), 0px 12px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid transparent;
+  position: absolute;
+  z-index: 100;
+  background-color: #fff;
+}
+
+.search-results > section {
+  padding-left: 40px;
+  padding: 15px 0 15px 40px;
+}
+
+.search-results > section:hover {
+  cursor: pointer;
+  background-color: rgb(245, 248, 250);
 }
 
 .card-lg {
@@ -354,7 +377,6 @@ label {
   border: 1px solid rgb(227, 233, 237);
   max-height: 600px;
   border-radius: 4px;
-
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;

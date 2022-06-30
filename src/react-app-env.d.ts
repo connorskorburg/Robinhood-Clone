@@ -88,5 +88,9 @@ declare namespace DashboardTypes {
         payload: any;
     }
 
+    interface SearchResultItem {
+        symbol: string;
+        name: string;
+    }
 
 }
